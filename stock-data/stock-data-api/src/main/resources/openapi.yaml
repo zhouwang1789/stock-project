@@ -1,0 +1,68 @@
+openapi: 3.0.1
+info:
+  title: Stock data
+  description: Stock data spec that defines the REST APIs for retrieving stock data
+  contact:
+    email: zhouwang1789@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://stock-data-integration:8080/
+paths:
+  /stock/dailyAdjusted/{symbol}:
+    get:
+      tags:
+        - dailyAdjusted
+      summary: Get dailyAdjusted data of a stock
+      description: Get dailyAdjusted data of a stock
+      operationId: getDailyAdjusted
+      parameters:
+        - name: symbol
+          in: path
+          description: Stock symbol
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/dailyAdjusted'
+        400:
+          description: Invalid stock symbol
+          content: {}
+components:
+  schemas:
+    dailyAdjusted:
+      type: object
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+        open:
+          type: number
+          format: double
+        high:
+          type: number
+          format: double
+        low:
+          type: number
+          format: double
+        close:
+          type: number
+          format: double
+        adjustedClose:
+          type: number
+          format: double
+        volume:
+          type: integer
+          format: int64
+        dividendAmount:
+          type: number
+          format: double
+        splitCoefficient:
+          type: number
+          format: double
