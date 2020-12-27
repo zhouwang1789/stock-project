@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+com:
+  zwang:
+    stock:
+      apiKey: "DVAO0LCOZGXDO1M6"
+      timeout: 60000
+      outputSize: "full" # compact

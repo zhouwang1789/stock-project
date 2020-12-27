@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+  stock-data-integration:
+    build: ./stock-data/stock-data-integration
+    ports:
+    - '8080-8090:8080'
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  web:
+    build: ./stockprediction
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    env_file:
+      - stockprediction/.env.dev

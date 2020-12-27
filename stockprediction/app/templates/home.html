@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock App</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<h1>Stock project for prices analysis using machine learning algorithms</h1>
+
+<body>
+<form action="/stock/" method="post">
+    <label for="stock_symbol">Stock symbol: </label>
+    <input id="stock_symbol" type="text" name="stock_symbol" value={{ stock_symbol }}>
+    <label>Examples: msft, aapl, goog, amaz</label><br><br>
+    <label for="stock_data_size">Stock data size: </label>
+    <select id="stock_data_size" name="stock_data_size">
+        <option value="30">30</option>
+        <option value="60">60</option>
+        <option value="90">90</option>
+        <option value="120">120</option>
+    </select><br><br>
+    <input type="submit" value="Analyze">
+</form>
+
+{% block content %}
+{% endblock %}
+
+</body>
+
+<br>
+<hr>
+<br>
+
+<table style="width:50%">
+    <caption style="text-align:left">Tech Stacks and Highlights</caption>
+    <tr>
+        <th>Feature</th>
+        <th>Implementation</th>
+    </tr>
+    <tr>
+        <td>Customized JVM runtime</td>
+        <td><b>Jlink</b> with <b>Java</b> JDK 11</td>
+    </tr>
+    <tr>
+        <td>Asynchronous processing</td>
+        <td><b>Reactive</b> programming using Spring WebFlux</td>
+    </tr>
+    <tr>
+        <td>Containerized microservices</td>
+        <td>High <b>scalability</b> of docker managed <b>microservices</b></td>
+    </tr>
+    <tr>
+        <td>Standard APIs</td>
+        <td><b>OpenAPI</b> initiative for generating API clients and server stubs</td>
+    </tr>
+    <tr>
+        <td>Stock prices analysis</td>
+        <td>Machine learning algorithm using <b>Sklearn</b> library</td>
+    </tr>
+    <tr>
+        <td>Other</td>
+        <td>UI supported by Django framework for native integration with <b>Python</b></td>
+    </tr>
+</table>
+<br>
+
+<p>Visit my <a href="https://github.com/zhouwang1789">github page</a> for more information</p>
+<!-- And add a copyright notice.-->
+<p>&#169; zwang, 2020</p>
+</body>
+
+</html>
