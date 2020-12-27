@@ -9,4 +9,4 @@ Stock trending analysis and price prediction
 # How to run
 Clone the project and under the root directory, open a terminal/CMD window and run
 1. ` mvn clean install -f ./stock-data`    # build the projects
-1. `docker-compose up`    # start the services
+1. `docker-compose --compatibility up --build`    # start the services
