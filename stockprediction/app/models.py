@@ -12,7 +12,3 @@ class DailyAdjusted(models.Model):
     volume = models.IntegerField(null=True)
     dividendAmount = models.DecimalField(max_digits=19, decimal_places=10)
     splitCoefficient = models.DecimalField(max_digits=19, decimal_places=10)
-
-
-class Stock(models.Model):
-    symbol = models.CharField(max_length=10)

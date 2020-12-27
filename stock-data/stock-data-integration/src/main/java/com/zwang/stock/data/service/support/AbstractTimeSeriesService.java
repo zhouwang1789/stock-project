@@ -1,33 +1,27 @@
 package com.zwang.stock.data.service.support;
 
 import com.zwang.stock.data.configuration.StockConfiguration;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.patriques.AlphaVantageConnector;
 import org.patriques.TimeSeries;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.Optional;
-
-@Service
-@RequiredArgsConstructor
-@Slf4j
-public abstract class AbstractTimeSeriesService<T> {
+/**
+ * Abstract class provides the connection to <a href="https://www.alphavantage.co/documentation/">Alpha Vantage API</a>
+ * for retrieving stock data
+ * <p>
+ * Acknowledgements to the <a href="https://github.com/patriques82/alphavantage4j">alphavantage4j project</a> for
+ * the Java wrapper
+ *
+ * @param <T> generic TimeSeries type
+ */
+public abstract class AbstractTimeSeriesService<T> extends AbstractReactiveService<T> {
 
     protected final StockConfiguration stockConfiguration;
-    protected TimeSeries timeSeries;
+    protected final TimeSeries timeSeries;
 
-    @PostConstruct
-    public void init() {
-        AlphaVantageConnector apiConnector = new AlphaVantageConnector(stockConfiguration.getApiKey(), stockConfiguration.getTimeout());
-        timeSeries = new TimeSeries(apiConnector);
-    }
-
-    public T getTimeSeries(String symbol) {
-        T response = getTimeSeriesResponse(symbol);
-        return Optional.ofNullable(response).orElseThrow(() ->
-                (new IllegalArgumentException("TimeSeries metadata is null for " + symbol)));
+    public AbstractTimeSeriesService(StockConfiguration stockConfiguration) {
+        super();
+        this.stockConfiguration = stockConfiguration;
+        this.timeSeries = new TimeSeries(new AlphaVantageConnector(stockConfiguration.getApiKey(), stockConfiguration.getTimeout()));
     }
 
     protected abstract T getTimeSeriesResponse(String symbol);

@@ -12,7 +12,6 @@
     <modules>
         <module>stock-data-api</module>
         <module>stock-data-integration</module>
-        <module>stock-data-persistence</module>
     </modules>
 
 </project>

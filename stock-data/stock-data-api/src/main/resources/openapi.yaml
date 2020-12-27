@@ -6,7 +6,10 @@ info:
     email: zhouwang1789@gmail.com
   version: 1.0.0
 servers:
+  - url: http://localhost:8080/
+    description: Standalone server running locally
   - url: http://stock-data-integration:8080/
+    description: Container server discoverable by service name
 paths:
   /stock/dailyAdjusted/{symbol}:
     get:

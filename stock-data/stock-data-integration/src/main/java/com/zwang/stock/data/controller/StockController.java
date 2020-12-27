@@ -32,8 +32,9 @@ public class StockController implements StockApi {
         return Mono.just(symbol)
                 .doOnNext(s -> log.debug("Requesting dailyAdjusted for symbol: {}", s))
                 .flatMap(dailyAdjustedService::getDailyAdjusted)
-                .doOnError(throwable -> log.error("Error occurs for getting dailyAdjusteds.", throwable))
-                .doOnNext(dailyAdjusteds -> log.info("Retrieved dailyAdjusteds.size[{}] for symbol:[{}] in {}ms", dailyAdjusteds.size(), symbol, Duration.between(start, Instant.now()).toMillis()))
+                .doOnError(throwable -> log.error("Error occurs for getting dailyAdjusteds", throwable))
+                .doOnNext(dailyAdjusteds -> log.info("Retrieved dailyAdjusteds.size[{}] for symbol:[{}] in {} ms", dailyAdjusteds.size(), symbol, Duration.between(start, Instant.now()).toMillis()))
                 .flatMap(dailyAdjusteds -> Mono.just(ResponseEntity.ok(Flux.fromIterable(dailyAdjusteds))));
     }
+
 }

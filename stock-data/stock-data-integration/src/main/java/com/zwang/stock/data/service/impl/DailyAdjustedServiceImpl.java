@@ -3,7 +3,7 @@ package com.zwang.stock.data.service.impl;
 import com.zwang.stock.data.configuration.StockConfiguration;
 import com.zwang.stock.data.mapper.DailyAdjustedMapper;
 import com.zwang.stock.data.service.DailyAdjustedService;
-import com.zwang.stock.data.service.support.AbstractReactiveService;
+import com.zwang.stock.data.service.support.AbstractTimeSeriesService;
 import lombok.extern.slf4j.Slf4j;
 import org.patriques.input.timeseries.OutputSize;
 import org.patriques.output.timeseries.DailyAdjusted;
@@ -15,9 +15,9 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class DailyAdjustedServiceImpl extends AbstractReactiveService<TimeSeriesResponse> implements DailyAdjustedService {
+public class DailyAdjustedServiceImpl extends AbstractTimeSeriesService<TimeSeriesResponse> implements DailyAdjustedService {
 
-    private DailyAdjustedMapper dailyAdjustedMapper;
+    private final DailyAdjustedMapper dailyAdjustedMapper;
 
     public DailyAdjustedServiceImpl(StockConfiguration stockConfiguration, DailyAdjustedMapper dailyAdjustedMapper) {
         super(stockConfiguration);
@@ -26,7 +26,7 @@ public class DailyAdjustedServiceImpl extends AbstractReactiveService<TimeSeries
 
     @Override
     protected DailyAdjusted getTimeSeriesResponse(String symbol) {
-        OutputSize outputSize = stockConfiguration.getSize().equals(OutputSize.FULL.getValue())
+        OutputSize outputSize = stockConfiguration.getOutputSize().equals(OutputSize.FULL.getValue())
                 ? OutputSize.FULL : OutputSize.COMPACT;
         return timeSeries.dailyAdjusted(symbol, outputSize);
     }

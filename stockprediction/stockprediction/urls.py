@@ -21,5 +21,5 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('stock/<symbol>/', views.daily_adjusted, name='daily_adjusted'),
+    path('stock/', views.stock, name='stock'),
 ]

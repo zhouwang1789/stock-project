@@ -13,5 +13,6 @@ public class StockConfiguration {
 
     private String apiKey;
     private int timeout;
-    private String size;
+    private String outputSize;
+
 }

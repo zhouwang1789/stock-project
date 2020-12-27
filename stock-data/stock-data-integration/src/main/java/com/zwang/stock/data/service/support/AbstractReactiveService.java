@@ -1,28 +1,28 @@
 package com.zwang.stock.data.service.support;
 
-import com.zwang.stock.data.configuration.StockConfiguration;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
-import javax.annotation.PostConstruct;
 import java.util.function.Supplier;
 
-public abstract class AbstractReactiveService<T> extends AbstractTimeSeriesService<T> {
+/**
+ * Abstract class allows for asynchronous requests using reactive programming
+ *
+ * @param <T> generic Stock data type
+ * @author zwang
+ */
+public abstract class AbstractReactiveService<T> {
 
-    private Scheduler scheduler;
+    private final Scheduler scheduler;
 
-    @PostConstruct
-    public void postConstruct() {
+    public AbstractReactiveService() {
         this.scheduler = Schedulers.elastic();
-    }
-
-    public AbstractReactiveService(StockConfiguration stockConfiguration) {
-        super(stockConfiguration);
     }
 
     protected <R> Mono<R> reactiveGet(Supplier<R> supplier) {
         return Mono.fromSupplier(supplier)
                 .subscribeOn(scheduler);
     }
+
 }

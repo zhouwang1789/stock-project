@@ -1,0 +1,23 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+    <div>
+        {% if stock_symbol %}
+            <h3>Result for: {{ stock_symbol }}</h3>
+        {% endif %}
+    </div>
+
+    <p>
+        {% if error %}
+            <h3> {{ error }}</h3>
+        {% endif %}
+    </p>
+
+    <p>
+        {% for key, value in prediction_res.items %}
+            <p> {{ key }}: {{ value }}</p>
+        {% endfor %}
+    </p>
+
+{% endblock content %}
