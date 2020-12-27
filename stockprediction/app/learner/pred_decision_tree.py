@@ -19,7 +19,6 @@ class DecisionTreeLearner:
 
     @staticmethod
     def predict(df: DataFrame):
-        # while self.db.check_flag(technical_indicator_prediction):
         try:
             if len(df) < MIN_DF_LENGTH:
                 return {"Error": f'Data size[{len(df)}] is less than the minimum[{MIN_DF_LENGTH}]'}
