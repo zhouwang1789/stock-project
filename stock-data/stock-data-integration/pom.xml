@@ -43,7 +43,7 @@
 
         <!-- stock data api -->
         <dependency>
-            <groupId>com.zwang.stock</groupId>
+            <groupId>com.zwang.stock.data</groupId>
             <artifactId>stock-data-api</artifactId>
             <version>${stock-data-api.version}</version>
         </dependency>
